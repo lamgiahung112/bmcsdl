@@ -1,0 +1,87 @@
+<nav class="sidebar">
+    <div class="logo-container">
+        <img src="https://via.placeholder.com/150" alt="Logo" class="logo">
+    </div>
+    
+    <ul class="nav-links">
+        <li>
+            <a href="/admin/xd" class="nav-link <%= path.startsWith('/admin/xd') ? 'active' : '' %>">
+                <i class="fas fa-check-circle"></i>
+                <span>Xét Duyệt</span>
+            </a>
+        </li>
+        <li>
+            <a href="/admin/xt" class="nav-link <%= path.startsWith('/admin/xt') ? 'active' : '' %>">
+                <i class="fas fa-user-shield"></i>
+                <span>Xác thực</span>
+            </a>
+        </li>
+        <li>
+            <a href="/admin/lt" class="nav-link <%= path.startsWith('/admin/lt') ? 'active' : '' %>">
+                <i class="fas fa-archive"></i>
+                <span>Lưu trữ</span>
+            </a>
+        </li>
+        <li>
+            <a href="/admin/gs" class="nav-link <%= path.startsWith('/admin/gs') ? 'active' : '' %>">
+                <i class="fas fa-eye"></i>
+                <span>Giám Sát</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<style>
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        width: 250px;
+        background-color: #2c3e50;
+        padding: 20px 0;
+        color: white;
+    }
+
+    .logo-container {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .logo {
+        width: 120px;
+        height: auto;
+    }
+
+    .nav-links {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0;
+    }
+
+    .nav-link {
+        display: flex;
+        align-items: center;
+        padding: 15px 25px;
+        color: white;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+    .nav-link:hover {
+        background-color: #34495e;
+    }
+
+    .nav-link i {
+        margin-right: 15px;
+        width: 20px;
+    }
+
+    .nav-link span {
+        font-size: 16px;
+    }
+
+    .active {
+        background-color: #34495e; /* Highlight color for active link */
+    }
+</style>

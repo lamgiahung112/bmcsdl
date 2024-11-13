@@ -1,9 +1,14 @@
 import dotenv from "dotenv"
 import express from "express"
 import path from "path"
-import { initializeConnectionPool } from "@/db"
 import { initRoutes } from "./routes"
 import cookieParser from "cookie-parser"
+import {
+	GiamsatDataSource,
+	LuuTruDataSource,
+	XacThucDataSource,
+	XetDuyetDataSource,
+} from "./db"
 
 const app = express()
 
@@ -17,8 +22,21 @@ app.use(express.static(path.join(__dirname, "public")))
 
 initRoutes(app)
 
-initializeConnectionPool().then(() => {
-	app.listen(3000, () => {
-		console.log("Server is running on port 3000")
+GiamsatDataSource.initialize()
+	.then(() => {
+		return LuuTruDataSource.initialize()
 	})
-})
+	.then(() => {
+		return XacThucDataSource.initialize()
+	})
+	.then(() => {
+		return XetDuyetDataSource.initialize()
+	})
+	.then(() => {
+		app.listen(3000, () => {
+			console.log("Server is running on port 3000")
+		})
+	})
+	.catch((err) => {
+		console.error(err)
+	})

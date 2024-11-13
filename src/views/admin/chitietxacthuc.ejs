@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Chi tiết Xác Thực</title>
+    <style>
+        .details-container {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    
+        .section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+    
+        .section h2 {
+            color: #333;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+    
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+    
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .info-label {
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 5px;
+        }
+    
+        .info-value {
+            color: #333;
+        }
+    
+        .verify-button, .reject-button {
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .verify-button {
+            background-color: #4CAF50;
+        }
+
+        .verify-button:hover {
+            background-color: #45a049;
+        }
+
+        .reject-button {
+            background-color: #dc3545;
+        }
+
+        .reject-button:hover {
+            background-color: #c82333;
+        }
+    
+        .passport-card {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <%- include("/partials/navbar") %>
+    <div style="margin-left: 250px;">
+        <div style="width: 90%; margin: 20px auto;">
+            <div class="details-container">
+                <h1>Chi tiết Xác Thực</h1>
+                <!-- Section 1: Thông tin đăng ký hộ chiếu -->
+                <div class="section">
+                    <h2>Thông tin đăng ký hộ chiếu</h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Họ</span>
+                            <span class="info-value"><%= attempt.family_name %></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tên</span>
+                            <span class="info-value"><%= attempt.given_name %></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Quận/Huyện</span>
+                            <span class="info-value"><%= attempt.district_residence %></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Thành phố</span>
+                            <span class="info-value"><%= attempt.city_residence %></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tỉnh</span>
+                            <span class="info-value"><%= attempt.province_residence %></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Số điện thoại</span>
+                            <span class="info-value"><%= attempt.phone_number %></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Email</span>
+                            <span class="info-value"><%= attempt.email %></span>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Section 2: Thông tin công dân -->
+                <div class="section">
+                    <h2>Thông tin công dân</h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Họ</span>
+                            <span class="info-value"><%= citizen.family_name %></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tên</span>
+                            <span class="info-value"><%= citizen.given_name %></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Ngày sinh</span>
+                            <span class="info-value"><%= citizen.dob %></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Giới tính</span>
+                            <span class="info-value"><%= citizen.sex %></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Dân tộc</span>
+                            <span class="info-value"><%= citizen.ethnicity %></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tôn giáo</span>
+                            <span class="info-value"><%= citizen.religion %></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Quê quán</span>
+                            <span class="info-value"><%= citizen.district_origin %>, <%= citizen.city_origin %>, <%= citizen.province_origin %></span>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Section 3: Thông tin CCCD/CMND -->
+                <div class="section">
+                    <h2>Thông tin căn cước công dân/chứng minh nhân dân</h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Số CCCD/CMND</span>
+                            <span class="info-value"><%= citizenIdentity.id %></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Loại giấy tờ</span>
+                            <span class="info-value"><%= citizenIdentity.identity_type %></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Ngày cấp</span>
+                            <span class="info-value"><%= citizenIdentity.issue_date %></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Ngày hết hạn</span>
+                            <span class="info-value"><%= citizenIdentity.expire_date %></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Nơi thường trú</span>
+                            <span class="info-value"><%= citizenIdentity.district_residence %>, <%= citizenIdentity.city_residence %>, <%= citizenIdentity.province_residence %></span>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Section 4: Thông tin hộ chiếu -->
+                <div class="section">
+                    <h2>Thông tin hộ chiếu</h2>
+                    <% if (passports && passports.length > 0) { %>
+                        <% passports.forEach(passport => { %>
+                            <div class="passport-card">
+                                <div class="info-grid">
+                                    <div class="info-item">
+                                        <span class="info-label">Số hộ chiếu</span>
+                                        <span class="info-value"><%= passport.id %></span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Ngày cấp</span>
+                                        <span class="info-value"><%= passport.issue_date %></span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Ngày hết hạn</span>
+                                        <span class="info-value"><%= passport.expire_date %></span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Số điện thoại</span>
+                                        <span class="info-value"><%= passport.phone_number %></span>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <p>Chưa có thông tin hộ chiếu</p>
+                    <% } %>
+                </div>
+            
+                <!-- Verification Button -->
+                <% if (attempt.verified_at) { %>
+                    <div class="section">
+                        <p><strong>Đã xác thực:</strong> <%= attempt.verified_at %></p>
+                    </div>
+                <% } else if (attempt.rejected_at) { %>
+                    <div class="section">
+                        <p><strong>Đã từ chối:</strong> <%= attempt.rejected_at %></p>
+                        <p><strong>Lý do:</strong> <%= attempt.rejected_reason %></p>
+                    </div>
+                <% } else { %>
+                    <div class="button-group" style="display: flex; gap: 10px;">
+                        <button class="verify-button" data-attempt-id="<%= attempt.id %>">Xác thực</button>
+                        <button class="reject-button" data-attempt-id="<%= attempt.id %>" style="background-color: #dc3545;">Từ chối</button>
+                    </div>
+                <% } %> 
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.verify-button').click(function() {
+                const attemptId = $(this).data('attempt-id');
+                $.ajax({
+                    url: `/admin/xt/${attemptId}/verify`,
+                    method: 'POST',
+                    success: function(response) {
+                        location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Có lỗi xảy ra khi xác thực. Vui lòng thử lại.');
+                    }
+                });
+            });
+
+            $('.reject-button').click(function() {
+                const attemptId = $(this).data('attempt-id');
+                const reason = window.prompt('Vui lòng nhập lý do từ chối:');
+                
+                if (reason !== null) {  // Check if user didn't click Cancel
+                    $.ajax({
+                        url: `/admin/xt/${attemptId}/reject`,
+                        method: 'POST',
+                        data: { reason: reason },
+                        success: function(response) {
+                            location.reload();
+                        },
+                        error: function(xhr, status, error) {
+                            alert('Có lỗi xảy ra khi từ chối. Vui lòng thử lại.');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

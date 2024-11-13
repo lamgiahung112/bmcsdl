@@ -1,5 +1,5 @@
 import * as authController from "./auth.controller"
-import * as xacthucController from "./xacthuc.controller"
 import * as adminController from "./admin.controller"
+import * as passportController from "./passport.controller"
 
-export { authController, xacthucController, adminController }
+export { authController, adminController, passportController }

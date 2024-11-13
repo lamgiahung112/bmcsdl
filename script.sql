@@ -107,28 +107,17 @@ CREATE TABLE PassportRegistrationAttempts (
     phone_number VARCHAR2(20) NOT NULL,
     email VARCHAR2(100) NOT NULL,
     identity_id VARCHAR2(50) NOT NULL,
-    accepted NUMBER(1) DEFAULT 0 CHECK (accepted IN (0,1)),
-    verified NUMBER(1) DEFAULT 0 CHECK (verified IN (0,1)),
-    CONSTRAINT fk_attempts_identity
-        FOREIGN KEY (identity_id)
-        REFERENCES CitizenIdentity(id)
+    accepted_at DATE NULL,
+    verified_at DATE NULL,
+    rejected_at DATE NULL,
+    rejected_reason VARCHAR2(1000) NULL
 );
-
--- Tạo employee cho webapp
-CREATE TABLE employee (
-    id VARCHAR2(50) PRIMARY KEY,
-    username VARCHAR2(100) NOT NULL,
-    password VARCHAR2(100) NOT NULL,
-    require_reset_password NUMBER(1) DEFAULT 1 CHECK (require_reset_password IN (0,1)),
-    role VARCHAR2(50) NOT NULL CHECK (role IN ('xt', 'xd', 'lt', 'gs'))
-);
-INSERT INTO employee (ID, USERNAME, PASSWORD, "ROLE") VALUES ('admin_1', 'giamsat', 'pwd', 'gs');
 
 -- Cấp quyền cho role xacthuc
 GRANT SELECT ON Citizen TO xacthuc;
 GRANT SELECT ON CitizenIdentity TO xacthuc;
 GRANT SELECT ON Passport TO xacthuc;
-GRANT SELECT ON PassportRegistrationAttempts TO xacthuc;
+GRANT SELECT, UPDATE ON PassportRegistrationAttempts TO xacthuc;
 
 -- Cấp quyền cho role xetduyet
 CREATE OR REPLACE FUNCTION xetduyet_citizen_func(
@@ -181,19 +170,14 @@ begin
     );
 END;
 
-GRANT SELECT ON PassportRegistrationAttempts TO xd;
-GRANT SELECT ON CitizenIdentity TO xd;
-GRANT SELECT ON Citizen TO xd;
-GRANT SELECT ON Passport TO xd;
-
--- Cấp quyền cho role xt
-GRANT SELECT ON PassportRegistrationAttempts TO xt;
-GRANT SELECT ON CitizenIdentity TO xt;
-GRANT SELECT ON Citizen TO xt;
-GRANT SELECT ON Passport TO xt;
+GRANT SELECT, UPDATE ON PassportRegistrationAttempts TO xetduyet;
+GRANT SELECT ON CitizenIdentity TO xetduyet;
+GRANT SELECT ON Citizen TO xetduyet;
+GRANT SELECT ON Passport TO xetduyet;
 
 -- Cấp quyền cho role luutru
 GRANT SELECT ON PassportRegistrationAttempts TO luutru;
+GRANT SELECT, INSERT ON Passport TO luutru;
 
 
 

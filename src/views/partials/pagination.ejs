@@ -1,0 +1,70 @@
+<style>
+    .pagination {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin: 20px auto;
+        width: 90%;
+    }
+
+    .pagination button,
+    .pagination select {
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: white;
+        cursor: pointer;
+    }
+
+    .pagination button:hover {
+        background-color: #f5f5f5;
+    }
+
+    .pagination button:disabled {
+        background-color: #eee;
+        cursor: not-allowed;
+    }
+</style>
+
+<div class="pagination">
+    <button 
+        onclick="changePage(<%= page - 1 %>)" 
+        <%= page <= 1 ? 'disabled' : '' %>
+    >
+        Previous
+    </button>
+    
+    <span>Page <%= page %> of <%= Math.ceil(total / perPage) %></span>
+    
+    <button 
+        onclick="changePage(<%= page + 1 %>)" 
+        <%= page >= Math.ceil(total / perPage) ? 'disabled' : '' %>
+    >
+        Next
+    </button>
+
+    <div style="margin-left: auto;">
+        <label for="perPage">Items per page:</label>
+        <select id="perPage" onchange="changePerPage(this.value)">
+            <option value="10" <%= perPage === 10 ? 'selected' : '' %>>10</option>
+            <option value="25" <%= perPage === 25 ? 'selected' : '' %>>25</option>
+            <option value="50" <%= perPage === 50 ? 'selected' : '' %>>50</option>
+            <option value="100" <%= perPage === 100 ? 'selected' : '' %>>100</option>
+        </select>
+    </div>
+</div>
+
+<script>
+    function changePage(newPage) {
+        const url = new URL(window.location.href);
+        url.searchParams.set('page', newPage);
+        window.location.href = url.toString();
+    }
+
+    function changePerPage(newPerPage) {
+        const url = new URL(window.location.href);
+        url.searchParams.set('perPage', newPerPage);
+        url.searchParams.set('page', 1); // Reset to first page when changing items per page
+        window.location.href = url.toString();
+    }
+</script>
