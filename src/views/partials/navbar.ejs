@@ -29,6 +29,13 @@
             </a>
         </li>
     </ul>
+
+    <div class="logout-container">
+        <a href="/logout" class="nav-link logout-link">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Đăng xuất</span>
+        </a>
+    </div>
 </nav>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <style>
@@ -83,5 +90,19 @@
 
     .active {
         background-color: #34495e; /* Highlight color for active link */
+    }
+
+    .logout-container {
+        position: absolute;
+        bottom: 60px;
+        width: 100%;
+    }
+
+    .logout-link {
+        color: #dc3545 !important;
+    }
+
+    .logout-link:hover {
+        background-color: rgba(220, 53, 69, 0.1) !important;
     }
 </style>

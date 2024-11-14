@@ -39,7 +39,7 @@
     <%- include("/partials/navbar") %>
     <div style="margin-left: 250px;">
         <div style="width: 90%; margin: 20px auto;">
-            <h1>Xét Duyệt</h1>
+            <h1>Lưu Trữ</h1>
             <form method="GET" style="display: flex; gap: 20px; margin-bottom: 20px;">
                 <div>
                     <label for="name">Tìm kiếm theo tên:</label>
@@ -82,10 +82,10 @@
                         <td><%= attempt.email %></td>
                         <td>
                             <% if (attempt.verified_at && attempt.accepted_at) { %>
-                                <span style="color: green;">Đã duyệt</span>
-                            <% } else if (attempt.accepted_at && attempt.verified_at) { %>
+                                <span style="color: green;">Đã duyệt, cần tạo hộ chiếu</span>
+                            <% } else if (!attempt.accepted_at) { %>
                                 <span style="color: orange;">Cần xác thực</span>
-                            <% } else if (attempt.verified_at) { %>
+                            <% } else if (!attempt.verified_at) { %>
                                 <span style="color: orange;">Cần xét duyệt</span>
                             <% } else if (attempt.rejected_at) { %>
                                 <span style="color: red;">Đã từ chối</span>

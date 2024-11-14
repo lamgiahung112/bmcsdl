@@ -49,8 +49,9 @@
                     <label for="status">Trạng thái:</label>
                     <select id="status" name="status">
                         <option value="">Tất cả</option>
-                        <option value="accepted" <%= filters.status === 'accepted' ? 'selected' : '' %>>Đã duyệt</option>
-                        <option value="verified" <%= filters.status === 'verified' ? 'selected' : '' %>>Đã xác minh</option>
+                        <option value="accepted" <%= filters.status === 'accepted' ? 'selected' : '' %>>Đã xác thực</option>
+                        <option value="verified" <%= filters.status === 'verified' ? 'selected' : '' %>>Đã xét duyệt</option>
+                        <option value="rejected" <%= filters.status === 'rejected' ? 'selected' : '' %>>Đã từ chối</option>
                         <option value="pending" <%= filters.status === 'pending' ? 'selected' : '' %>>Chờ xử lý</option>
                     </select>
                 </div>
@@ -82,8 +83,10 @@
                         <td>
                             <% if (attempt.verified_at && attempt.accepted_at) { %>
                                 <span style="color: green;">Đã duyệt</span>
-                            <% } else if (attempt.verified_at) { %>
-                                <span style="color: orange;">Đã xác minh</span>
+                            <% } else if (!attempt.accepted_at) { %>
+                                <span style="color: orange;">Cần xác thực</span>
+                            <% } else if (!attempt.verified_at) { %>
+                                <span style="color: orange;">Cần xét duyệt</span>
                             <% } else if (attempt.rejected_at) { %>
                                 <span style="color: red;">Đã từ chối</span>
                             <% } else { %>

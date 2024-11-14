@@ -107,6 +107,7 @@ CREATE TABLE PassportRegistrationAttempts (
     phone_number VARCHAR2(20) NOT NULL,
     email VARCHAR2(100) NOT NULL,
     identity_id VARCHAR2(50) NOT NULL,
+    created_at DATE DEFAULT SYSDATE
     accepted_at DATE NULL,
     verified_at DATE NULL,
     rejected_at DATE NULL,

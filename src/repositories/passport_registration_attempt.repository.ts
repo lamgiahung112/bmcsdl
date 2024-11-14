@@ -37,6 +37,7 @@ class PassportRegistrationAttemptRepository {
 			.where(where)
 			.skip((page - 1) * perPage)
 			.take(perPage)
+			.orderBy("attempt.created_at", "DESC")
 			.getMany()
 
 		return {

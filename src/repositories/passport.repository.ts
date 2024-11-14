@@ -9,6 +9,7 @@ export default class PassportRepository {
 			.getRepository(Passport)
 			.createQueryBuilder("passport")
 			.where("passport.citizen_id = :citizenId", { citizenId })
+			.orderBy("passport.issue_date", "DESC")
 			.getMany()
 	}
 }

@@ -1,5 +1,4 @@
-import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn } from "typeorm"
-import { CitizenIdentity } from "./citizen_identity.entity"
+import { Entity, Column, PrimaryColumn } from "typeorm"
 
 @Entity({ name: "PASSPORTREGISTRATIONATTEMPTS", schema: "GS" })
 export class PassportRegistrationAttempt {
@@ -29,6 +28,9 @@ export class PassportRegistrationAttempt {
 
 	@Column("varchar2", { length: 50, name: "IDENTITY_ID" })
 	identity_id: string | undefined
+
+	@Column("date", { name: "CREATED_AT" })
+	created_at: Date | undefined
 
 	@Column("date", { name: "ACCEPTED_AT" })
 	accepted_at: Date | undefined
