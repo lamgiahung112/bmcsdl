@@ -9,7 +9,62 @@
 <body>
     <%- include("/partials/navbar") %>
     <div style="margin-left: 250px;" class="not-authorized-container">
-        Bạn không có quyền truy cập vào trang này
+        <div class="not-authorized-content">
+            <h1 class="not-authorized-title">Truy cập bị từ chối</h1>
+            <p class="not-authorized-message">Bạn không có quyền truy cập vào trang này.</p>
+            <a href="/" class="not-authorized-button">Quay lại trang chủ</a>
+        </div>
     </div>
+    
+    <style>
+        .not-authorized-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f9f9f9; /* Màu nền nhẹ */
+        }
+    
+        .not-authorized-content {
+            text-align: center;
+            padding: 20px 40px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #ffffff; /* Nền trắng */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+            max-width: 500px;
+        }
+    
+        .not-authorized-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d32f2f; /* Màu đỏ cảnh báo */
+            margin-bottom: 10px;
+        }
+    
+        .not-authorized-message {
+            font-size: 16px;
+            color: #555555; /* Màu chữ nhẹ */
+            margin-bottom: 20px;
+        }
+    
+        .not-authorized-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #ffffff; /* Màu chữ */
+            background-color: #1976d2; /* Màu xanh chủ đạo */
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+    
+        .not-authorized-button:hover {
+            background-color: #1565c0; /* Màu xanh đậm hơn khi hover */
+        }
+    </style>
+    
 </body>
 </html>

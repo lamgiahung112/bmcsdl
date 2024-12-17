@@ -47,7 +47,7 @@ GRANT GRANT ANY OBJECT PRIVILEGE TO giamsat;
 CONNECT gs/gs;
 
 -- Tạo bảng
--- Create Citizen table
+-- Create Citizen table  // thong tin cong dan
 CREATE TABLE Citizen (
     id VARCHAR2(50) PRIMARY KEY,
     family_name VARCHAR2(100) NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE Citizen (
     province_origin VARCHAR2(100) NOT NULL
 );
 
--- Create CitizenIdentity table
+-- Create CitizenIdentity table  // đinh danh cong dan
 CREATE TABLE CitizenIdentity (
     id VARCHAR2(50) PRIMARY KEY,
     citizen_id VARCHAR2(50) NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE CitizenIdentity (
         REFERENCES Citizen(id)
 );
 
--- Create Passport table
+-- Create Passport table  // passport
 CREATE TABLE Passport (
     id VARCHAR2(50) PRIMARY KEY,
     citizen_id VARCHAR2(50) NOT NULL,
@@ -92,7 +92,7 @@ CREATE TABLE Passport (
         REFERENCES CitizenIdentity(id)
 );
 
--- Create PassportRegistrationAttempts table
+-- Create PassportRegistrationAttempts table /thong tin dang ki ho chieu
 CREATE TABLE PassportRegistrationAttempts (
     id VARCHAR2(50) PRIMARY KEY,
     family_name VARCHAR2(100) NOT NULL,

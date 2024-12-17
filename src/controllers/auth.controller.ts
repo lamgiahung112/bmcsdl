@@ -8,6 +8,12 @@ export function loginPage(req: Request, res: Response) {
 	}
 	renderView(res, "common/login", null)
 }
+export function rootPage(req: Request, res: Response) {
+	if (res.locals.isAuthenticated) {
+		return res.redirect("/admin")
+	}
+	renderView(res, "common/root", null)
+}
 
 export async function login(req: Request, res: Response) {
 	const { username, password } = req.body

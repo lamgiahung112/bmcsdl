@@ -5,11 +5,12 @@ interface PaginationOptions {
 	page: number
 	perPage: number
 	filters: {
-		status?: string
+		status?: string // task delete status all UI
 		name?: string
 	}
 }
-
+			
+//create UI for LUUTRU (show list PassportRegistrationAttempt(click item-> show detail item-> button create passport)  )
 class PassportRegistrationAttemptRepository {
 	constructor(private dataSource: DataSource) {}
 

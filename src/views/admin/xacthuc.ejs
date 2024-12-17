@@ -65,9 +65,13 @@
                     <th>ID</th>
                     <th>Họ</th>
                     <th>Tên</th>
+                    <th>CMND/CCCD</th>
                     <th>Địa chỉ</th>
                     <th>Số điện thoại</th>
                     <th>Email</th>
+                    <th>accepted_at</th>
+                    <th>verified_at</th>
+                    <th>rejected_at</th>
                     <th>Trạng thái</th>
                 </tr>
             </thead>
@@ -77,18 +81,23 @@
                         <td><%= attempt.id %></td>
                         <td><%= attempt.family_name %></td>
                         <td><%= attempt.given_name %></td>
+                        <td><%= attempt.identity_id %></td>
                         <td><%= attempt.district_residence + ', ' + attempt.city_residence + ', ' + attempt.province_residence %></td>
                         <td><%= attempt.phone_number %></td>
                         <td><%= attempt.email %></td>
+                        <td><%= attempt.accepted_at %></td>
+                        <td><%= attempt.verified_at %></td>
+                        <td><%= attempt.rejected_at %></td>
                         <td>
-                            <% if (attempt.verified_at && attempt.accepted_at) { %>
-                                <span style="color: green;">Đã duyệt</span>
-                            <% } else if (!attempt.accepted_at) { %>
+                            <% if (attempt.verified_at) { %>
+                                <span style="color: green;">Đã xác thực</span>
+                            <% } else if (!attempt.verified_at && !attempt.rejected_at) { %>
                                 <span style="color: orange;">Cần xác thực</span>
-                            <% } else if (!attempt.verified_at) { %>
-                                <span style="color: orange;">Cần xét duyệt</span>
                             <% } else if (attempt.rejected_at) { %>
                                 <span style="color: red;">Đã từ chối</span>
+                            <% } else if (!attempt.verified_at) { %>
+                                <span style="color: rgb(0, 55, 255);">Cần xét duyệt</span>
+                           
                             <% } else { %>
                                 <span style="color: red;">Chờ xử lý</span>
                             <% } %>

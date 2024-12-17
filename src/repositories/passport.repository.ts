@@ -12,4 +12,7 @@ export default class PassportRepository {
 			.orderBy("passport.issue_date", "DESC")
 			.getMany()
 	}
+	async create(passport: Partial<Passport>) {
+        return this.dataSource.getRepository(Passport).save(passport);
+    }
 }

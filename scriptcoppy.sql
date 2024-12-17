@@ -14,10 +14,6 @@ GRANT UNLIMITED TABLESPACE TO xd;
 GRANT UNLIMITED TABLESPACE TO lt;
 GRANT UNLIMITED TABLESPACE TO gs;
 
--- Cấp quyền tạo, sửa đổi, xóa table cho role giamsat
-GRANT CREATE TABLE TO giamsat;
-GRANT ALTER ANY TABLE TO giamsat;
-GRANT DROP ANY TABLE TO giamsat;
 
 -- Tạo role
 CREATE ROLE xacthuc;
@@ -51,7 +47,7 @@ GRANT GRANT ANY OBJECT PRIVILEGE TO giamsat;
 CONNECT gs/gs;
 
 -- Tạo bảng
--- Create Citizen table
+-- Create Citizen table // thong tin cong dan
 CREATE TABLE Citizen (
     id VARCHAR2(50) PRIMARY KEY,
     family_name VARCHAR2(100) NOT NULL,
@@ -65,7 +61,7 @@ CREATE TABLE Citizen (
     province_origin VARCHAR2(100) NOT NULL
 );
 
--- Create CitizenIdentity table
+-- Create CitizenIdentity table // đinh danh cong dan
 CREATE TABLE CitizenIdentity (
     id VARCHAR2(50) PRIMARY KEY,
     citizen_id VARCHAR2(50) NOT NULL,
@@ -107,7 +103,7 @@ CREATE TABLE PassportRegistrationAttempts (
     phone_number VARCHAR2(20) NOT NULL,
     email VARCHAR2(100) NOT NULL,
     identity_id VARCHAR2(50) NOT NULL,
-    created_at DATE DEFAULT SYSDATE
+    created_at DATE DEFAULT SYSDATE,
     accepted_at DATE NULL,
     verified_at DATE NULL,
     rejected_at DATE NULL,
