@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  oracle-bmcsdl:
+    image: gvenzl/oracle-xe:21-faststart
+    container_name: oracle-xe
+    environment:
+      - ORACLE_PASSWORD=bmcsdl
+    ports:
+      - "1521:1521"
+      - "5500:5500"
+    restart: always
