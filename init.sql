@@ -53,8 +53,8 @@ connect gs/gs;
 -- Tables
 CREATE TABLE Citizen (
     id VARCHAR2(50) PRIMARY KEY,
-    identity_id VARCHAR(50) NOT NULL,
-    passport_id VARCHAR(50) NULL,
+    identity_id VARCHAR(50) NOT NULL UNIQUE,
+    passport_id VARCHAR(50) NULL UNIQUE,
 
     family_name VARCHAR2(100) NOT NULL,
     given_name VARCHAR2(100) NOT NULL,
