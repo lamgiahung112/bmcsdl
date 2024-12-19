@@ -76,7 +76,8 @@ export async function chitietxacthucPage(req: Request, res: Response) {
 		return res.redirect(req.headers.referer || `/admin/xt`);
 		}
 	const passports = await passportRepository.getCitizenPassports(
-		citizenIdentity?.citizen_id ?? ""
+		// citizenIdentity?.citizen_id ?? ""
+		""
 	) 
 
 	renderView(res, "admin/chitietxacthuccopy", {
@@ -182,7 +183,8 @@ export async function chitietxetduyetPage(req: Request, res: Response) {
 	const citizenIdentityRepository = new CitizenIdentityRepository(dataSource!)
 	const citizenIdentity = await citizenIdentityRepository.findOne(attempt.identity_id)
 	const passports = await passportRepository.getCitizenPassports(
-		citizenIdentity?.citizen_id ?? ""
+		// citizenIdentity?.citizen_id ?? ""
+		""
 	)
 
 	renderView(res, "admin/chitietxetduyet", {

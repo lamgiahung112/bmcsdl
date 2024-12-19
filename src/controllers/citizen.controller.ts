@@ -7,7 +7,9 @@ export function loginPage(req: Request, res: Response) {
 	if (res.locals.isAuthenticated) {
 		return res.redirect("/citizen-dashboard")
 	}
-	renderView(res, "citizen/login", null)
+	renderView(res, "citizen/login", {
+		err: "",
+	})
 }
 
 // Dang ki tai khoan cu dan online
@@ -15,7 +17,9 @@ export function registerPage(req: Request, res: Response) {
 	if (res.locals.isAuthenticated) {
 		return res.redirect("/citizen-dashboard")
 	}
-	renderView(res, "citizen/register", null)
+	renderView(res, "citizen/register", {
+		err: "",
+	})
 }
 
 // api dang ki tai khoan
@@ -29,6 +33,6 @@ export function apiRegister(req: Request, res: Response) {
 		return
 	}
 	renderView(res, "citizen/register", {
-		error: "test failed",
+		err: "test failed",
 	})
 }

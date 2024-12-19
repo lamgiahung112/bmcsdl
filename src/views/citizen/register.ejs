@@ -83,9 +83,7 @@
                 <label for="confirm-password">Nhập lại mật khẩu</label>
                 <input type="password" id="confirm-password" name="confirm-password" required>
             </div>
-            <% if (error) { %>
-                <p style="color: red; margin-bottom: 20px;"><%= error %></p>
-            <% } %>
+            <p style="color: red; margin-bottom: 20px;"><%= err ?? '' %></p>
             <button type="submit">Đăng ký</button>
         </form>
         <p class="login-message">Đã có tài khoản? <a href="/citizen">Đăng nhập</a></p>

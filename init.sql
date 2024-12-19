@@ -66,7 +66,7 @@ CREATE TABLE Citizen (
     city_origin VARCHAR2(100) NOT NULL,
     province_origin VARCHAR2(100) NOT NULL,
     phone_number VARCHAR(10) NOT NULL,
-    pwd VARCHAR(255) NULL,
+    pwd VARCHAR(255) NULL, 
 
     CONSTRAINT fk_citizen_identity
         FOREIGN KEY (identity_id)

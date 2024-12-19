@@ -6,9 +6,6 @@ export class Passport {
 	@PrimaryColumn("varchar2", { length: 50, name: "ID" })
 	id: string | undefined
 
-	@Column("varchar2", { length: 50, name: "CITIZEN_ID", nullable: false })
-	citizen_id: string | undefined
-
 	@Column("varchar2", { length: 100, name: "DISTRICT_RESIDENCE", nullable: false })
 	district_residence: string | undefined
 
@@ -24,7 +21,6 @@ export class Passport {
 	@Column("date", { name: "EXPIRE_DATE", nullable: false })
 	expire_date: Date | undefined
 
-	@OneToOne(() => Citizen)
-	@JoinColumn({ name: "CITIZEN_ID" })
+	@OneToOne(() => Citizen, (citizen) => citizen.passport)
 	citizen: Citizen | undefined
 }
