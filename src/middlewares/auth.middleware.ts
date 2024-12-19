@@ -19,7 +19,7 @@ export function onlyAllowRole(roles: string[]) {
 			return res.redirect("/login")
 		}
 
-		res.locals.role = decoded.role
+		res.locals = decoded
 		res.locals.isAuthenticated = true
 		next()
 	}
