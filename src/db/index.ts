@@ -44,6 +44,16 @@ export const XacThucDataSource = new DataSource({
 	logging: true,
 })
 
+export const CuDanDataSource = new DataSource({
+	type: "oracle",
+	username: "cd",
+	password: "cd",
+	connectString: "localhost:1521/xepdb1",
+	entities: [Citizen, CitizenIdentity, Passport, PassportRegistrationAttempt],
+	synchronize: false,
+	logging: true,
+})
+
 export function getDataSource(role: string) {
 	switch (role) {
 		case "gs":
@@ -54,6 +64,7 @@ export function getDataSource(role: string) {
 			return XetDuyetDataSource
 		case "xt":
 			return XacThucDataSource
+		case "cd":
+			return CuDanDataSource
 	}
 }
-

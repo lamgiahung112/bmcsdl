@@ -4,6 +4,7 @@ import path from "path"
 import { initRoutes } from "./routes"
 import cookieParser from "cookie-parser"
 import {
+	CuDanDataSource,
 	GiamsatDataSource,
 	LuuTruDataSource,
 	XacThucDataSource,
@@ -31,6 +32,9 @@ GiamsatDataSource.initialize()
 	})
 	.then(() => {
 		return XetDuyetDataSource.initialize()
+	})
+	.then(() => {
+		return CuDanDataSource.initialize()
 	})
 	.then(() => {
 		app.listen(3000, () => {

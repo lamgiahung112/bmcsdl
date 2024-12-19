@@ -31,7 +31,7 @@ export function softAuthenticate() {
 		const decoded = jwt.verifyToken(token)
 
 		if (decoded) {
-			res.locals.role = decoded.role
+			res.locals = decoded
 			res.locals.isAuthenticated = true
 		}
 		next()
